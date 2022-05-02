@@ -1,22 +1,11 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'node:14-alpine' }
+    }
     stages {
-        stage('Install packages') {
+        stage('Verify were in docker container') {
             steps {
-                echo 'Running npm install'
-                sh 'npm install'
-            }
-        }
-        stage('Tests: Unit tests') {
-            steps {
-                echo 'Running unit-tests'
-                sh 'npm run unit-test'
-            }
-        }
-        stage('Tests: Integration tests') {
-            steps {
-                echo 'Running integration-tests'
-                sh 'npm run integration-test'            
+                sh 'node --version'
             }
         }
     }
