@@ -7,13 +7,13 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Running unit tests') {
+        stage('Tests: Unit tests') {
             steps {
                 echo 'Running unit-tests'
                 sh 'npm run unit-test'
             }
         }
-        stage('Running integration tests') {
+        stage('Tests: Integration tests') {
             steps {
                 echo 'Running integration-tests'
                 sh 'npm run integration-test'            
