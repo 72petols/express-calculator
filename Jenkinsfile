@@ -8,17 +8,25 @@ pipeline {
             }
         }
         stage('Tests: Unit tests') {
+            when {
+                anyOf {
+                    branch 'develop';
+                    branch 'feature/*'
+                }
+            }
             steps {
                 echo 'Running unit-tests'
                 sh 'npm run unit-test'
             }
         }
         stage('Tests: Integration tests') {
+            when {
+                branch 'develop'
+            }
             steps {
                 echo 'Running integration-tests'
-                sh 'npm run integration-test'            
+                sh 'npm run integration-test'
             }
         }
     }
 }
-
