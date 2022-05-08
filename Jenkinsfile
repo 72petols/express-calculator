@@ -28,18 +28,18 @@ pipeline {
                 sh 'npm run integration-test'
             }
         }
-    }
-    stage('Delivery') {
-        when {
-            branch 'main'
-        }
-        steps {
-            script {
-                docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                    def image = docker.build("72petols/express-calculator")
-                    image.push("$BUILD_NUMBER")
-                    image.push("latest")
-                 }
+        stage('Delivery') {
+            when {
+                branch 'main'
+            }
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                        def image = docker.build("72petols/express-calculator")
+                        image.push("$BUILD_NUMBER")
+                        image.push("latest")
+                    }
+                }
             }
         }
     }
