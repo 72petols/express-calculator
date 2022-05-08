@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 15s # hur ofta vi ska skrapa data (default 1 min)
+  evaluation_interval: 15s # hur ofta vi ska kolla regler vi satt upp (default 1 min)
+
+scrape_configs:
+- job_name: 'jenkins'
+  metrics_path: /prometheus
+  static_configs:
+  - targets: ["host.docker.internal:8080"]

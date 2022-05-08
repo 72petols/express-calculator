@@ -1,0 +1,13 @@
+#!/bin/bash
+# Notes:
+# 1. Fedora runs SE Linux which messes up docker pemissions! :Z added to the mount bind fixes this
+# 2. There is no "host.docker.internal" in Linix docker at this time use the --add-host=
+# 3. ${pwd} does not work in Linux, use $PWD env variable instead to get current working dir 
+docker run \
+	--rm \
+	-p 9090:9090 \
+	-d \
+	--add-host=host.docker.internal:host-gateway \
+	-v $PWD/prometheus.yml:/etc/prometheus/prometheus.yml:Z \
+	prom/prometheus-linux-amd64
+
