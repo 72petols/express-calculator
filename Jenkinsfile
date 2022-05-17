@@ -1,6 +1,12 @@
 pipeline {
     agent any
     stages {
+        stage('pres stage') {
+            steps {
+                echo 'Running npm install'
+                sh 'npm -v'
+            }
+        }
         stage('Install packages') {
             steps {
                 echo 'Running npm install'
